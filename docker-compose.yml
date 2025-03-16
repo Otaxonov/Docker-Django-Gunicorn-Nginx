@@ -6,3 +6,12 @@ services:
     image: my-app-image
     container_name: my-app-container
     command: gunicorn DFA.wsgi:application --bind 0.0.0.0:8000
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - web
